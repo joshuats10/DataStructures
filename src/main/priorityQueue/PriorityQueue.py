@@ -43,4 +43,3 @@ class PriorityQueue:
                     n = min_child
 
         return ret
-
