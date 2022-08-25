@@ -105,7 +105,7 @@ class PriorityQueue:
         self.swap(0, -1)
         ret = self.data.pop(-1)
         for i in range((self.qSize()//2)-1, -1, -1):
-                self.heapify(i)
+            self.heapify(i)
         return (ret.info, ret.priority)
 
     # Removing a specific data from the priority queue
@@ -118,7 +118,7 @@ class PriorityQueue:
         self.data.pop(-1)
 
         for i in range((self.qSize()//2)-1, -1, -1):
-                self.heapify(i)
+            self.heapify(i)
 
     # Change the priority of a specific data in the priority queue
     def changePriority(self, info, new_priority):
@@ -127,7 +127,7 @@ class PriorityQueue:
                 self.data[i].priority = new_priority
         
         for i in range((self.qSize()//2)-1, -1, -1):
-                self.heapify(i)
+            self.heapify(i)
 
 if __name__ == "__main__":
     node1 = Node('John', 1)
