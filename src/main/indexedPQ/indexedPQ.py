@@ -47,12 +47,31 @@ class indexedPQ:
 
         return ret_ki, ret_val
 
+    def update(self, ki, val):
+        i = self.pm[ki]
+        self.val[ki] = val
+        self.__sink(i)
+        self.__swim(i)
+
+    def decreaseKey(self, ki, val):
+        if self.__compareLess(val, self.val[ki]):
+            self.val[ki] = val
+            self.__swim(self.pm[ki])
+
+    def increaseKey(self, ki, val):
+        if self.__compareLess(self.val[ki], val):
+            self.val[ki] = val
+            self.__sink(self.pm[ki])
+
     def __swap(self, i, j):
         self.pm[self.im[j]], self.pm[self.im[i]] = i, j
         self.im[i], self.im[j] = self.im[j], self.im[i]
 
     def __less(self, i, j):
         return self.val[self.im[i]] < self.val[self.im[j]]
+    
+    def __compareLess(self, val_i, val_j):
+        return val_i < val_j
 
     def __swim(self, i):
         parent = (i-1)//2
@@ -96,6 +115,8 @@ if __name__ == "__main__":
 
     ipq.remove(lookup['Laura'])
     
+    ipq.update(lookup['Carly'], 1)
+
     print(ipq.val)
     print(ipq.pm)
     print(ipq.im)
